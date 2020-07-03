@@ -56,7 +56,7 @@
 #define X_STOP_PIN                          PA15
 #define Y_STOP_PIN                          PA12
 #define Z_MIN_PIN                           PA11
-#define Z_MAX_PIN                           PC4
+//#define Z_MAX_PIN                           PC4
 
 #ifndef FIL_RUNOUT_PIN
   #define FIL_RUNOUT_PIN                    PA4   // MT_DET
@@ -81,9 +81,9 @@
 #define E0_STEP_PIN                         PD6
 #define E0_DIR_PIN                          PD3
 
-#define E1_ENABLE_PIN                       PA3
-#define E1_STEP_PIN                         PA6
-#define E1_DIR_PIN                          PA1
+//#define E1_ENABLE_PIN                       PA3
+//#define E1_STEP_PIN                         PA6
+//#define E1_DIR_PIN                          PA1
 
 //
 // Temperature Sensors
@@ -139,12 +139,49 @@
 #define MT_DET_1_PIN                        PA4
 #define MT_DET_PIN_INVERTING false
 
+#if HAS_TMC220x
+  /**
+   * TMC2208/TMC2209 stepper drivers
+   */
+  //
+  // Software serial
+  //
+
+  #ifndef X_SERIAL_TX_PIN
+    #define X_SERIAL_TX_PIN  PA6 //E1_STEP_PIN
+  #endif
+  #ifndef X_SERIAL_RX_PIN
+    #define X_SERIAL_RX_PIN  PA1 //E1_DIR_PIN
+  #endif
+
+  #ifndef Y_SERIAL_TX_PIN
+    #define Y_SERIAL_TX_PIN  PA6 //E1_STEP_PIN
+  #endif
+  #ifndef Y_SERIAL_RX_PIN
+    #define Y_SERIAL_RX_PIN  PA1 //E1_DIR_PIN
+  #endif
+
+  #ifndef Z_SERIAL_TX_PIN
+    #define Z_SERIAL_TX_PIN  PA6 //E1_STEP_PIN
+  #endif
+  #ifndef Z_SERIAL_RX_PIN
+    #define Z_SERIAL_RX_PIN  PA1 //E1_DIR_PIN
+  #endif
+
+  #ifndef E0_SERIAL_TX_PIN
+    #define E0_SERIAL_TX_PIN PA6 //E1_STEP_PIN
+  #endif
+  #ifndef E0_SERIAL_RX_PIN
+    #define E0_SERIAL_RX_PIN PA1 //E1_DIR_PIN
+  #endif
+#endif
+
 //
 // SD Card
 //
-#ifndef SDCARD_CONNECTION
-  #define SDCARD_CONNECTION              ONBOARD
-#endif
+//#ifndef SDCARD_CONNECTION
+//  #define SDCARD_CONNECTION              ONBOARD
+//#endif
 
 #define SDIO_SUPPORT
 #define SDIO_CLOCK 4500000                        // 4.5 MHz
@@ -248,8 +285,18 @@
   #define FSMC_CS_PIN                       PD7   // NE4
   #define FSMC_RS_PIN                       PD11  // A0
 
-  #define LCD_RESET_PIN                     PC6   // FSMC_RST
+  //#define LCD_RESET_PIN                     PC6   // FSMC_RST
   #define LCD_BACKLIGHT_PIN                 PD13
+
+  #define FSMC_UPSCALE 3
+  #define LCD_FULL_PIXEL_WIDTH 480
+  #define LCD_PIXEL_OFFSET_X 48
+  #define LCD_FULL_PIXEL_HEIGHT 320
+  #define LCD_PIXEL_OFFSET_Y 48
+
+  #define LCD_USE_DMA_FSMC                        // Use DMA transfers to send data to the TFT
+  #define FSMC_DMA_DEV                      DMA2
+  #define FSMC_DMA_CHANNEL               DMA_CH5
 
   #if ENABLED(TOUCH_BUTTONS)
     #define TOUCH_CS_PIN                    PA7   // SPI2_NSS
