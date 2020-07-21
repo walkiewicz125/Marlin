@@ -569,6 +569,9 @@
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
 
+#define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
+                                // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
+
 // @section extruder
 
 /**
@@ -805,7 +808,7 @@
 #if ENABLED(CLASSIC_JERK)
   #define DEFAULT_XJERK 20.0
   #define DEFAULT_YJERK 20.0
-  #define DEFAULT_ZJERK  0.1
+  #define DEFAULT_ZJERK 20.0
 
   #define TRAVEL_EXTRA_XYJERK 15.0     // Additional jerk allowance for all travel moves
 

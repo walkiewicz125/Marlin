@@ -264,9 +264,6 @@
   #define DELAYED_BACKLIGHT_INIT
 #endif
 
-// don't know if this is the right way to do it
-#define TFT_HAS_COLOR defined(FSMC_GRAPHICAL_TFT)
-
 /**
  * I2C Panels
  */

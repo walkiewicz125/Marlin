@@ -670,9 +670,6 @@ private:
 
   TERN_(PHOTO_GCODE, static void M240());
 
-  #if HAS_LCD_CONTRAST || TFT_HAS_COLOR
-    static void M250();
-  #endif
   TERN_(HAS_LCD_CONTRAST, static void M250());
 
   #if ENABLED(EXPERIMENTAL_I2CBUS)

@@ -38,12 +38,6 @@
 //
 #define DISABLE_DEBUG
 
-// SPI - EEPROM FLASH
-#define SPI_FLASH_EEPROM_EMULATION
-#define SPI_FLASH_EEPROM_OFFSET 0x700000
-#define SPI_FLASH_DEVICE 2
-#define SPI_FLASH_CS_PIN PB12
-
 //
 // EEPROM
 //
@@ -279,12 +273,10 @@
   #define FSMC_CS_PIN                       PD7   // NE4
   #define FSMC_RS_PIN                       PD11  // A0
 
-  #define LCD_USE_DMA_FSMC
-  #define FSMC_DMA_DEV DMA2
-  #define FSMC_DMA_CHANNEL DMA_CH5
-
-  //#define LCD_RESET_PIN      PC6    // FSMC_RST
-  //#define NO_LCD_REINIT             // Suppress LCD re-initialization
+  #define TOUCH_CS_PIN                      PA7   // SPI2_NSS
+  #define TOUCH_SCK_PIN                     PB13  // SPI2_SCK
+  #define TOUCH_MISO_PIN                    PB14  // SPI2_MISO
+  #define TOUCH_MOSI_PIN                    PB15  // SPI2_MOSI
 
   #define LCD_BACKLIGHT_PIN                 PD13
 
