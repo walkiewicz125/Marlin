@@ -114,7 +114,7 @@
   #endif
 #endif
 #ifndef FAN_PIN
-  #define FAN_PIN                           PB1   // FAN
+  #define FAN_PIN                           PA3 //Original pin: PB1
 #endif
 #ifndef HEATER_BED_PIN
   #define HEATER_BED_PIN                    PA0
@@ -148,16 +148,7 @@
 #if HAS_TMC220x
   /**
    * TMC2208/TMC2209 stepper drivers
-   *
-   * Hardware serial communication ports.
-   * If undefined software serial is used according to the pins below
    */
-  //#define X_HARDWARE_SERIAL  Serial1
-  //#define Y_HARDWARE_SERIAL  Serial1
-  //#define Z_HARDWARE_SERIAL  Serial1
-  //#define E0_HARDWARE_SERIAL Serial1
-  //#define E1_HARDWARE_SERIAL Serial1
-
   //
   // Software serial
   //
@@ -194,9 +185,9 @@
 //
 // SD Card
 //
-#ifndef SDCARD_CONNECTION
-  #define SDCARD_CONNECTION              ONBOARD
-#endif
+//#ifndef SDCARD_CONNECTION
+//  #define SDCARD_CONNECTION              ONBOARD
+//#endif
 
 #define SDIO_SUPPORT
 #define SDIO_CLOCK 4500000                        // 4.5 MHz
@@ -302,8 +293,18 @@
   #define FSMC_CS_PIN                       PD7   // NE4
   #define FSMC_RS_PIN                       PD11  // A0
 
-  #define LCD_RESET_PIN                     PC6   // FSMC_RST
+  //#define LCD_RESET_PIN                     PC6   // FSMC_RST
   #define LCD_BACKLIGHT_PIN                 PD13
+
+  #define FSMC_UPSCALE 3
+  #define LCD_FULL_PIXEL_WIDTH 480
+  #define LCD_PIXEL_OFFSET_X 48
+  #define LCD_FULL_PIXEL_HEIGHT 320
+  #define LCD_PIXEL_OFFSET_Y 48
+
+  #define LCD_USE_DMA_FSMC                        // Use DMA transfers to send data to the TFT
+  #define FSMC_DMA_DEV                      DMA2
+  #define FSMC_DMA_CHANNEL               DMA_CH5
 
   #if ENABLED(TOUCH_BUTTONS)
     #define TOUCH_CS_PIN                    PA7   // SPI2_NSS
